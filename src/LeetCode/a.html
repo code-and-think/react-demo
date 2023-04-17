@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const add = (a1, b1, cb) => {
+      if (typeof a1 !== 'number' || typeof b1 !== 'number') {
+        return cb && cb(new Error('参数不合法'));
+      }
+      cb && cb(null, a1 + b1);
+    };
+
+    const sumCb = (err, sum) => {
+      if (err) {
+        return console.log('err:catch:', err);
+      }
+      console.log('sum:', sum);
+    };
+
+    // 3
+    // add(1, 2, sumCb);
+    // error
+    // add('1', 2, sumCb);
+
+    // 实现此方法
+    const primisy = fn => {
+      // todo 实现
+      function res(...args) {
+        if (typeof args[args.length - 1] === 'function') {
+          const cb = args.pop()
+          fn(...args, cb);
+        } else {
+          return new Promise((resolve, reject) => {
+            try {
+              fn(...args, (err, res) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(res);
+                }
+              });
+            } catch (err) {
+              reject(err)
+            }
+          });
+        }
+      };
+      
+      return new Proxy(res,{
+        get(key){
+          
+        }
+      })
+    };
+
+    const addPrimisy = primisy(add);
+    console.log(addPrimisy.name)
+
+    // 也支持callback调用
+    addPrimisy(3, 4, sumCb);
+    addPrimisy('3', 4, sumCb);
+
+    // promise
+    addPrimisy(3, 4)
+      .then(sum => {
+        console.log('sum:', sum);
+      })
+      .catch(err => console.log('promise:catch:', err));
+
+    addPrimisy('3', 4)
+      .then(sum => {
+        console.log('sum:', sum);
+      })
+      .catch(err => console.log('promise:catch:', err));
+
+  </script>
+</body>
+
+</html>

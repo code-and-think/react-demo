@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+      background-color: skyblue;
+    }
+
+    .box1 {
+      width: 150px;
+      height: 150px;
+      background-color: #bfa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="box1">
+
+    </div>
+  </div>
+
+  <script>
+    const box = document.querySelector('.box')
+    const box1 = document.querySelector('.box1')
+    box.addEventListener('click', () => {
+      console.log('box click');
+    });
+
+    box1.addEventListener('click', () => {
+      console.log('box1 click');
+      Promise.resolve().then(() => console.log('microTask'));
+      setTimeout(() => {
+        console.log('macroTask');
+      }, 0);
+    });
+    // 点击 box1 后的打印顺序是：
+    // box1 click -> microTask -> box click -> macroTask
+    // box click 比 microTask 晚执行而比 macroTask 先执行说明是微任务
+  </script>
+</body>
+
+</html>

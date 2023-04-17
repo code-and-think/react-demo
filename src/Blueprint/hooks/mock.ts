@@ -1,0 +1,67 @@
+export const data = {
+  node_list: [
+    {
+      id: '1',
+      work_name: 'handler.WorkD',
+      is_required: false,
+      is_io: false,
+      success_ratio: 99.95,
+      pct_99: '100.99',
+      des: 'hhhhh',
+    },
+    {
+      id: '2',
+      work_name: 'handler.WorkE',
+      owner: ['luzhihao.linbudu'],
+      is_required: false,
+      is_io: false,
+      success_ratio: 99.95,
+      pct_99: '100.99',
+      des: 'luzhi',
+    },
+    {
+      id: '3',
+      work_name: 'handler.WorkA',
+      owner: ['该节点还没有设置管理员'],
+      is_required: false,
+      is_io: false,
+      success_ratio: 99.95,
+      pct_99: '100.99',
+      des: '暂未设置',
+    },
+    {
+      id: '4',
+      work_name: 'handler.WorkB',
+      owner: ['该节点还没有设置管理员'],
+      is_required: false,
+      is_io: false,
+      success_ratio: 99.95,
+      pct_99: '100.99',
+      des: '暂未设置',
+    },
+    {
+      id: '5',
+      work_name: 'handler.WorkC',
+      owner: ['wujiangpeng'],
+      is_required: false,
+      is_io: false,
+      success_ratio: 99.95,
+      pct_99: '100.99',
+      des: '222',
+    },
+  ],
+  edge_list: [
+    {
+      source: '1',
+      target: '2',
+    },
+    {
+      source: '4',
+      target: '2',
+    },
+    {
+      source: '5',
+      target: '1',
+    },
+  ],
+};
